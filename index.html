@@ -1,0 +1,1192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The CIVIC Forum: Center for Informed Voices in Infrastructure Choices</title>
+    <meta name="description" content="Bridging AI infrastructure decisions with democratic governance through evidence-based civic discourse.">
+    <meta property="og:title" content="The CIVIC Forum: Center for Informed Voices in Infrastructure Choices">
+    <meta property="og:description" content="Bridging AI infrastructure decisions with democratic governance through evidence-based civic discourse.">
+    <meta property="og:image" content="https://thecivic.forum/og-image-dark.png">
+    <meta property="og:url" content="https://thecivic.forum">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://thecivic.forum/og-image-dark.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300..700;1,9..40,300..700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --ink: #0c1821;
+            --paper: #f6f4f0;
+            --accent: #00274c;
+            --gold: #ffcb05;
+            --slate: #4a5568;
+            --mist: #e8e6e1;
+            --warm: #d4c5a9;
+            --ross-orange: #D86018;
+            --font-display: 'DM Serif Display', Georgia, serif;
+            --font-body: 'DM Sans', -apple-system, sans-serif;
+            --font-mono: 'JetBrains Mono', monospace;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        html {
+            scroll-behavior: smooth;
+            font-size: 17px;
+        }
+
+        body {
+            font-family: var(--font-body);
+            color: var(--ink);
+            background: var(--paper);
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        ::selection {
+            background: var(--gold);
+            color: var(--accent);
+        }
+
+        /* ─── NAV ─── */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            background: rgba(246,244,240,0.92);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--mist);
+            transition: box-shadow 0.3s;
+        }
+
+        nav.scrolled {
+            box-shadow: 0 1px 20px rgba(0,0,0,0.06);
+        }
+
+        .nav-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0.8rem 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .nav-logo {
+            font-family: var(--font-mono);
+            font-weight: 500;
+            font-size: 0.85rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        .nav-logo span {
+            color: var(--accent);
+            font-weight: 700;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            font-size: 0.82rem;
+            font-weight: 500;
+            letter-spacing: 0.03em;
+            text-decoration: none;
+            color: var(--slate);
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+
+        .nav-hamburger {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 4px;
+        }
+
+        .nav-hamburger svg {
+            width: 24px;
+            height: 24px;
+            stroke: var(--ink);
+        }
+
+        /* ─── HERO ─── */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 8rem 2rem 4rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-family: var(--font-mono);
+            font-size: 0.72rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--ross-orange);
+            margin-bottom: 2rem;
+            opacity: 0;
+            animation: fadeUp 0.8s ease 0.2s forwards;
+        }
+
+        .hero-badge::before {
+            content: '';
+            width: 32px;
+            height: 2px;
+            background: var(--ross-orange);
+        }
+
+        .hero h1 {
+            font-family: var(--font-display);
+            font-size: clamp(2.8rem, 6vw, 5rem);
+            line-height: 1.08;
+            color: var(--accent);
+            max-width: 900px;
+            margin-bottom: 2rem;
+            opacity: 0;
+            animation: fadeUp 0.8s ease 0.4s forwards;
+        }
+
+        .hero-sub {
+            font-size: 1.15rem;
+            color: var(--slate);
+            max-width: 640px;
+            line-height: 1.8;
+            margin-bottom: 3rem;
+            opacity: 0;
+            animation: fadeUp 0.8s ease 0.6s forwards;
+        }
+
+        .hero-stats {
+            display: flex;
+            gap: 3rem;
+            flex-wrap: wrap;
+            padding-top: 2rem;
+            border-top: 1px solid var(--mist);
+            opacity: 0;
+            animation: fadeUp 0.8s ease 0.8s forwards;
+        }
+
+        .hero-stat {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .hero-stat-value {
+            font-family: var(--font-display);
+            font-size: 2rem;
+            color: var(--accent);
+            line-height: 1.2;
+        }
+
+        .hero-stat-label {
+            font-size: 0.78rem;
+            color: var(--slate);
+            letter-spacing: 0.02em;
+            margin-top: 0.2rem;
+        }
+
+        /* ─── SECTIONS ─── */
+        section {
+            padding: 6rem 2rem;
+        }
+
+        .section-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-label {
+            font-family: var(--font-mono);
+            font-size: 0.72rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--ross-orange);
+            margin-bottom: 1rem;
+        }
+
+        .section-title {
+            font-family: var(--font-display);
+            font-size: clamp(2rem, 4vw, 3rem);
+            color: var(--accent);
+            line-height: 1.15;
+            max-width: 700px;
+            margin-bottom: 2rem;
+        }
+
+        .section-prose {
+            font-size: 1.05rem;
+            color: var(--slate);
+            max-width: 680px;
+            line-height: 1.85;
+        }
+
+        .section-prose + .section-prose {
+            margin-top: 1.2rem;
+        }
+
+        /* ─── PROBLEM ─── */
+        .problem {
+            background: var(--accent);
+            color: #fff;
+        }
+
+        .problem .section-label {
+            color: var(--gold);
+        }
+
+        .problem .section-title {
+            color: #fff;
+        }
+
+        .problem .section-prose {
+            color: rgba(255,255,255,0.78);
+        }
+
+        .gap-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1px;
+            background: rgba(255,255,255,0.1);
+            margin-top: 3rem;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .gap-card {
+            background: var(--accent);
+            padding: 2.5rem;
+            position: relative;
+        }
+
+        .gap-number {
+            font-family: var(--font-mono);
+            font-size: 0.7rem;
+            letter-spacing: 0.1em;
+            color: var(--gold);
+            margin-bottom: 1rem;
+        }
+
+        .gap-card h3 {
+            font-family: var(--font-display);
+            font-size: 1.3rem;
+            color: #fff;
+            margin-bottom: 0.8rem;
+            line-height: 1.3;
+        }
+
+        .gap-card p {
+            font-size: 0.92rem;
+            color: rgba(255,255,255,0.68);
+            line-height: 1.7;
+        }
+
+        /* ─── CIVIC STACK ─── */
+        .stack-section {
+            background: var(--paper);
+        }
+
+        .stack-visual {
+            margin-top: 3rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+        }
+
+        .stack-layer {
+            display: grid;
+            grid-template-columns: 200px 1fr;
+            gap: 0;
+            border-top: 1px solid var(--mist);
+            transition: background 0.3s;
+        }
+
+        .stack-layer:last-child {
+            border-bottom: 1px solid var(--mist);
+        }
+
+        .stack-layer:hover {
+            background: rgba(0,39,76,0.03);
+        }
+
+        .stack-layer-label {
+            font-family: var(--font-mono);
+            font-size: 0.7rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--ross-orange);
+            padding: 2rem 1.5rem 2rem 0;
+            border-right: 1px solid var(--mist);
+            display: flex;
+            align-items: flex-start;
+            padding-top: 2.2rem;
+        }
+
+        .stack-layer-content {
+            padding: 2rem 0 2rem 2rem;
+        }
+
+        .stack-layer-content h3 {
+            font-family: var(--font-display);
+            font-size: 1.25rem;
+            color: var(--accent);
+            margin-bottom: 0.6rem;
+        }
+
+        .stack-layer-content p {
+            font-size: 0.95rem;
+            color: var(--slate);
+            line-height: 1.75;
+            max-width: 640px;
+        }
+
+        .stack-layer-lead {
+            font-family: var(--font-mono);
+            font-size: 0.72rem;
+            color: var(--ross-orange);
+            margin-top: 0.8rem;
+            letter-spacing: 0.02em;
+        }
+
+        .stack-arrow {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            padding-right: calc(200px + 2rem);
+        }
+
+        .stack-arrow svg {
+            width: 20px;
+            height: 20px;
+            color: var(--warm);
+        }
+
+        /* ─── MICHIGAN ─── */
+        .michigan {
+            background: #fff;
+        }
+
+        .michigan-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            margin-top: 3rem;
+            align-items: start;
+        }
+
+        .michigan-case {
+            position: relative;
+        }
+
+        .michigan-case-label {
+            font-family: var(--font-mono);
+            font-size: 0.68rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--ross-orange);
+            margin-bottom: 0.6rem;
+        }
+
+        .michigan-case h3 {
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+            color: var(--accent);
+            margin-bottom: 1rem;
+        }
+
+        .michigan-case p {
+            font-size: 0.95rem;
+            color: var(--slate);
+            line-height: 1.75;
+        }
+
+        .why-michigan {
+            margin-top: 3rem;
+            padding-top: 3rem;
+            border-top: 1px solid var(--mist);
+        }
+
+        .capability-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.6rem;
+            margin-top: 1.5rem;
+        }
+
+        .capability-tag {
+            font-family: var(--font-mono);
+            font-size: 0.72rem;
+            letter-spacing: 0.03em;
+            padding: 0.5rem 1rem;
+            border: 1px solid var(--mist);
+            color: var(--slate);
+            background: var(--paper);
+            text-decoration: none;
+            transition: border-color 0.2s, color 0.2s;
+        }
+
+        a.capability-tag:hover {
+            border-color: var(--ross-orange);
+            color: var(--ross-orange);
+        }
+
+        /* ─── TEAM ─── */
+        .team {
+            background: var(--paper);
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2px;
+            margin-top: 3rem;
+            background: var(--mist);
+            border: 1px solid var(--mist);
+        }
+
+        .team-card {
+            background: var(--paper);
+            padding: 2rem;
+            transition: background 0.3s;
+        }
+
+        .team-card {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .team-card:hover {
+            background: #fff;
+        }
+
+        .team-card-name {
+            font-family: var(--font-display);
+            font-size: 1.1rem;
+            color: var(--accent);
+            margin-bottom: 0.3rem;
+        }
+
+        .team-card-role {
+            font-size: 0.82rem;
+            color: var(--ross-orange);
+            font-weight: 500;
+            margin-bottom: 0.6rem;
+        }
+
+        .team-card-dept {
+            font-family: var(--font-mono);
+            font-size: 0.68rem;
+            letter-spacing: 0.05em;
+            color: var(--ross-orange);
+            text-transform: uppercase;
+            flex-grow: 1;
+        }
+
+        .team-card-focus {
+            font-size: 0.85rem;
+            color: var(--slate);
+            margin-top: 0.8rem;
+            line-height: 1.6;
+        }
+
+        .team-card-name a {
+            color: var(--accent);
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+            transition: border-color 0.2s, color 0.2s;
+        }
+
+        .team-card-name a:hover {
+            border-bottom-color: var(--ross-orange);
+            color: var(--ross-orange);
+        }
+
+        /* ─── IMPACT ─── */
+        .impact {
+            background: #fff;
+        }
+
+        .impact-timeline {
+            margin-top: 3rem;
+            position: relative;
+        }
+
+        .impact-timeline::before {
+            content: '';
+            position: absolute;
+            left: 100px;
+            top: 0;
+            bottom: 0;
+            width: 1px;
+            background: var(--mist);
+        }
+
+        .timeline-item {
+            display: grid;
+            grid-template-columns: 100px 1fr;
+            gap: 2.5rem;
+            padding-bottom: 2.5rem;
+            position: relative;
+        }
+
+        .timeline-year {
+            font-family: var(--font-mono);
+            font-size: 0.82rem;
+            letter-spacing: 0.05em;
+            color: var(--ross-orange);
+            text-align: right;
+            padding-top: 0.15rem;
+            padding-right: 16px;
+        }
+
+        .timeline-year::after {
+            content: '';
+            position: absolute;
+            left: 96px;
+            top: 0.45rem;
+            width: 9px;
+            height: 9px;
+            background: var(--ross-orange);
+            border-radius: 50%;
+        }
+
+        .timeline-content h3 {
+            font-family: var(--font-display);
+            font-size: 1.15rem;
+            color: var(--accent);
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-content p {
+            font-size: 0.92rem;
+            color: var(--slate);
+            line-height: 1.7;
+            max-width: 580px;
+        }
+
+        /* ─── VISION ALIGNMENT ─── */
+        .alignment {
+            background: var(--accent);
+            color: #fff;
+            padding: 4rem 2rem;
+        }
+
+        .alignment .section-label {
+            color: var(--gold);
+        }
+
+        .alignment .section-title {
+            color: #fff;
+        }
+
+        .alignment-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1px;
+            background: rgba(255,255,255,0.1);
+            margin-top: 2.5rem;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .alignment-item {
+            background: var(--accent);
+            padding: 2rem;
+        }
+
+        .alignment-item h3 {
+            font-family: var(--font-display);
+            font-size: 1.1rem;
+            color: var(--gold);
+            margin-bottom: 0.6rem;
+        }
+
+        .alignment-item p {
+            font-size: 0.88rem;
+            color: rgba(255,255,255,0.68);
+            line-height: 1.7;
+        }
+
+        /* ─── CONTACT ─── */
+        .contact {
+            background: var(--paper);
+            padding: 4rem 2rem;
+        }
+
+        .contact-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .contact a {
+            color: var(--ross-orange);
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+            transition: border-color 0.2s;
+        }
+
+        .contact a:hover {
+            border-bottom-color: var(--ross-orange);
+        }
+
+        .contact-info {
+            font-size: 0.95rem;
+            color: var(--slate);
+            line-height: 1.85;
+        }
+
+        /* ─── FOOTER ─── */
+        footer {
+            background: var(--ink);
+            color: rgba(255,255,255,0.4);
+            padding: 2.5rem 2rem;
+        }
+
+        .footer-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.78rem;
+            font-family: var(--font-mono);
+            letter-spacing: 0.03em;
+        }
+
+        .footer-inner a {
+            color: rgba(255,255,255,0.55);
+            text-decoration: none;
+        }
+
+        .footer-inner a:hover {
+            color: rgba(255,255,255,0.8);
+        }
+
+        /* ─── ANIMATIONS ─── */
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(24px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ─── RESPONSIVE ─── */
+        @media (max-width: 900px) {
+            .nav-links { display: none; }
+            .nav-hamburger { display: block; }
+            .nav-links.open {
+                display: flex;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: var(--paper);
+                padding: 1.5rem 2rem;
+                border-bottom: 1px solid var(--mist);
+                gap: 1rem;
+            }
+            .gap-grid { grid-template-columns: 1fr; }
+            .team-grid { grid-template-columns: repeat(2, 1fr); }
+            .michigan-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+            .alignment-grid { grid-template-columns: 1fr; }
+
+            .hero-stats { gap: 2rem; }
+            .stack-layer { grid-template-columns: 1fr; }
+            .stack-layer-label {
+                border-right: none;
+                border-bottom: none;
+                padding: 1.5rem 0 0.3rem;
+            }
+            .stack-layer-content { padding: 0.5rem 0 2rem; }
+        }
+
+        @media (max-width: 600px) {
+            html { font-size: 15px; }
+            section { padding: 4rem 1.2rem; }
+            .nav-inner { padding: 0.8rem 1.2rem; }
+            .hero { padding: 7rem 1.2rem 3rem; }
+            .team-grid { grid-template-columns: 1fr; }
+            .hero-stats { flex-direction: column; gap: 1.2rem; }
+            .footer-inner { flex-direction: column; gap: 0.5rem; text-align: center; }
+            .impact-timeline::before { display: none; }
+            .timeline-item { grid-template-columns: 1fr; gap: 0.3rem; }
+            .timeline-year { text-align: left; }
+            .timeline-year::after { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- ─── NAVIGATION ─── -->
+<nav id="nav">
+    <div class="nav-inner">
+        <a href="#" class="nav-logo">the<span>CIVIC</span>.forum</a>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="#problem">The Problem</a></li>
+            <li><a href="#approach">Our Approach</a></li>
+            <li><a href="#michigan">Why Michigan</a></li>
+            <li><a href="#team">Team</a></li>
+            <li><a href="#impact">Impact</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+        <button class="nav-hamburger" onclick="document.getElementById('navLinks').classList.toggle('open')" aria-label="Toggle menu">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round">
+                <line x1="3" y1="6" x2="21" y2="6"/>
+                <line x1="3" y1="12" x2="21" y2="12"/>
+                <line x1="3" y1="18" x2="21" y2="18"/>
+            </svg>
+        </button>
+    </div>
+</nav>
+
+<!-- ─── HERO ─── -->
+<section class="hero" id="home">
+    <div class="hero-badge">University of Michigan</div>
+    <h1>Informed voices for infrastructure choices</h1>
+    <p class="hero-sub">
+        The CIVIC Forum is building the civic discourse infrastructure that connects hardware measurements
+        to policy frameworks, so communities can make evidence-based decisions about AI infrastructure
+        that affects their energy, water, and future.
+    </p>
+    <div class="hero-stats">
+        <div class="hero-stat">
+            <span class="hero-stat-value">$1T</span>
+            <span class="hero-stat-label">US datacenter investment projected by 2030</span>
+        </div>
+        <div class="hero-stat">
+            <span class="hero-stat-value">$98B</span>
+            <span class="hero-stat-label">in projects blocked in Q2 2025 alone</span>
+        </div>
+        <div class="hero-stat">
+            <span class="hero-stat-value">2-10x</span>
+            <span class="hero-stat-label">variance in AI energy estimates</span>
+        </div>
+    </div>
+</section>
+
+<!-- ─── PROBLEM ─── -->
+<section class="problem" id="problem">
+    <div class="section-inner reveal">
+        <span class="section-label">The Problem</span>
+        <h2 class="section-title">AI infrastructure decisions are failing everyone</h2>
+        <p class="section-prose">
+            When a datacenter requests grid connection, utilities conduct interconnection studies
+            over 6 to 18 months at roughly $500K, producing reports comprehensible only to power engineers.
+            What follows is predictable: utilities request billions for grid upgrades, consumer advocates
+            resist ratepayer burdens, communities mobilize against "mystery power users," and datacenter
+            operators promise economic benefits. This pattern is incapable of sustaining AI growth.
+        </p>
+    </div>
+    <div class="section-inner">
+        <p class="section-prose" style="margin-bottom: 2rem;">We have identified four systematic gaps preventing evidence-based deliberation:</p>
+        <div class="gap-grid reveal">
+            <div class="gap-card">
+                <div class="gap-number">GAP 01</div>
+                <h3>Energy data relies on estimates</h3>
+                <p>
+                    Energy estimates for AI systems vary 2 to 10x between calculations and direct measurement.
+                    Datacenter operators report figures without independent verification. Without verified
+                    measurements, stakeholders operate from incompatible assumptions.
+                </p>
+            </div>
+            <div class="gap-card">
+                <div class="gap-number">GAP 02</div>
+                <h3>Datacenters are treated as grid burdens</h3>
+                <p>
+                    Interconnection studies treat datacenters as rigid loads, ignoring that AI workloads
+                    can shift training by hours or defer inference by seconds. This flexibility could
+                    reduce infrastructure costs by billions if coordinated.
+                </p>
+            </div>
+            <div class="gap-card">
+                <div class="gap-number">GAP 03</div>
+                <h3>Grid-AI futures rely on point forecasts</h3>
+                <p>
+                    Current analyses assume a single future: this datacenter operating at this capacity
+                    for this duration. Yet uncertainties around datacenter counts, AI efficiency, and
+                    energy sources can swing infrastructure costs by billions.
+                </p>
+            </div>
+            <div class="gap-card">
+                <div class="gap-number">GAP 04</div>
+                <h3>Dialogue is technical and top-down</h3>
+                <p>
+                    Technical outputs remain incomprehensible to non-experts. Residents cannot ask
+                    "how will this affect my electricity bill or water supply?" and get evidence-based
+                    answers. Discourse defaults to worst-case fears versus corporate reassurances.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ─── CIVIC STACK ─── -->
+<section class="stack-section" id="approach">
+    <div class="section-inner reveal">
+        <span class="section-label">Our Approach</span>
+        <h2 class="section-title">The CIVIC Stack</h2>
+        <p class="section-prose">
+            Democratic infrastructure governance requires vertical integration: hardware measurements
+            must connect to policy frameworks through validated layers that preserve technical accuracy
+            while enabling public participation. Each layer builds on the one below it.
+        </p>
+    </div>
+    <div class="section-inner">
+        <div class="stack-visual reveal">
+            <div class="stack-layer">
+                <div class="stack-layer-label">Layer 01</div>
+                <div class="stack-layer-content">
+                    <h3>Hardware Measurements</h3>
+                    <p>
+                        Direct measurement of AI energy consumption and water use intensity establishes
+                        shared factual ground truth. Our measurement database provides the first
+                        independently verified, publicly accessible data for AI infrastructure impacts,
+                        building the factual foundation that evidence-based deliberation requires.
+                    </p>
+                    <div class="stack-layer-lead">Chowdhury · Dvorkin · Love</div>
+                </div>
+            </div>
+            <div class="stack-layer">
+                <div class="stack-layer-label">Layer 02</div>
+                <div class="stack-layer-content">
+                    <h3>Grid Impact Evaluation</h3>
+                    <p>
+                        Our testbed measures how temporal flexibility in AI training and inference workloads
+                        affects distribution infrastructure: voltage profiles, transformer loading, and power quality.
+                        By showing datacenters can be grid assets rather than burdens, we shift the conversation
+                        from "how much will this cost?" to "how should we coordinate this resource?"
+                    </p>
+                    <div class="stack-layer-lead">Dvorkin · Mathieu</div>
+                </div>
+            </div>
+            <div class="stack-layer">
+                <div class="stack-layer-label">Layer 03</div>
+                <div class="stack-layer-content">
+                    <h3>Scenario Exploration</h3>
+                    <p>
+                        Macro-energy system models explore thousands of potential grid-AI futures under
+                        deep uncertainty. Rather than single-point forecasts, communities can evaluate
+                        how decisions perform across scenarios, identify adaptive strategies, and
+                        understand which uncertainties matter most.
+                    </p>
+                    <div class="stack-layer-lead">Craig · Rodr&iacute;guez</div>
+                </div>
+            </div>
+            <div class="stack-layer">
+                <div class="stack-layer-label">Layer 04</div>
+                <div class="stack-layer-content">
+                    <h3>Democratic Interface</h3>
+                    <p>
+                        AI agents synthesize outputs from all layers into interfaces where regulators, citizens,
+                        utilities, and datacenter operators explore tradeoffs between grid stress, electricity bills,
+                        water consumption, and emissions. Technical complexity becomes legible to all stakeholders
+                        through transparent uncertainty quantification.
+                    </p>
+                    <div class="stack-layer-lead">Klass · Love · Ullman · Rodr&iacute;guez · Chowdhury</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ─── WHY MICHIGAN ─── -->
+<section class="michigan" id="michigan">
+    <div class="section-inner reveal">
+        <span class="section-label">Why Michigan</span>
+        <h2 class="section-title">Grounded in real decisions, built to scale</h2>
+        <p class="section-prose">
+            This is not a hypothetical exercise. Michigan communities are facing datacenter siting
+            decisions right now, and the university has the interdisciplinary depth to address them.
+        </p>
+    </div>
+    <div class="section-inner">
+        <div class="michigan-grid reveal">
+            <div class="michigan-case">
+                <div class="michigan-case-label">Case Study</div>
+                <h3>Ypsilanti Township</h3>
+                <p>
+                    A proposed datacenter development prompted community concern about energy costs,
+                    water use, and environmental impact. Residents lacked access to verified data
+                    about actual resource demands, forcing deliberation based on estimates
+                    and competing narratives rather than evidence.
+                </p>
+            </div>
+            <div class="michigan-case">
+                <div class="michigan-case-label">Case Study</div>
+                <h3>City of Saline</h3>
+                <p>
+                    Datacenter siting decisions here highlighted the gap between technical interconnection
+                    studies and public understanding. The community engagement process revealed how
+                    inaccessible technical outputs prevent meaningful democratic participation in
+                    infrastructure choices.
+                </p>
+            </div>
+        </div>
+        <div class="why-michigan reveal">
+            <p class="section-prose">
+                The University of Michigan uniquely combines ML systems research, power systems laboratories,
+                energy planning expertise, water systems knowledge, AI capabilities, energy law scholarship,
+                and community engagement experience. Existing partnerships with utilities, regulators,
+                and community organizations provide the relationships needed to translate research into practice.
+            </p>
+            <div class="capability-tags">
+                <a href="https://ml.energy/" target="_blank" class="capability-tag">ML.ENERGY</a>
+                <a href="https://mpel.engin.umich.edu/" target="_blank" class="capability-tag">Power grid testbeds</a>
+                <span class="capability-tag">Macro-energy modeling</span>
+                <span class="capability-tag">Water systems assessment</span>
+                <span class="capability-tag">AI agent frameworks</span>
+                <span class="capability-tag">Energy law &amp; regulation</span>
+                <a href="https://ies.engin.umich.edu/" target="_blank" class="capability-tag">Institute for Energy Solutions (IES)</a>
+                <a href="https://ginsberg.umich.edu/" target="_blank" class="capability-tag">Ginsberg Center</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ─── TEAM ─── -->
+<section class="team" id="team">
+    <div class="section-inner reveal">
+        <span class="section-label">Team</span>
+        <h2 class="section-title">An interdisciplinary team across six units</h2>
+    </div>
+    <div class="section-inner">
+        <div class="team-grid reveal">
+            <div class="team-card">
+                <div class="team-card-name"><a href="https://mosharaf.com/" target="_blank">Mosharaf Chowdhury</a></div>
+
+                <div class="team-card-dept">Computer Science &amp; Engineering</div>
+                <div class="team-card-focus">ML systems, ML.ENERGY benchmark, energy measurement infrastructure</div>
+            </div>
+            <div class="team-card">
+                <div class="team-card-name"><a href="https://seas.umich.edu/research/faculty/michael-craig" target="_blank">Michael Craig</a></div>
+
+                <div class="team-card-dept">Environment &amp; Sustainability</div>
+                <div class="team-card-focus">Macro-energy systems, robust decision-making under uncertainty</div>
+            </div>
+            <div class="team-card">
+                <div class="team-card-name"><a href="https://web.eecs.umich.edu/~dvorkin/" target="_blank">Vladimir Dvorkin</a></div>
+
+                <div class="team-card-dept">Electrical &amp; Computer Engineering</div>
+                <div class="team-card-focus">Power systems, grid testbed, distribution infrastructure analysis</div>
+            </div>
+            <div class="team-card">
+                <div class="team-card-name"><a href="https://michigan.law.umich.edu/faculty-and-scholarship/our-faculty/alexandra-klass" target="_blank">Alexandra Klass</a></div>
+
+                <div class="team-card-dept">Law School</div>
+                <div class="team-card-focus">Energy law, regulatory frameworks, policy translation</div>
+            </div>
+            <div class="team-card">
+                <div class="team-card-name"><a href="https://mathieu.engin.umich.edu/" target="_blank">Johanna Mathieu</a></div>
+
+                <div class="team-card-dept">Electrical &amp; Computer Engineering</div>
+                <div class="team-card-focus">Grid coordination protocols, real-time control algorithms, demand response</div>
+            </div>
+            <div class="team-card">
+                <div class="team-card-name"><a href="https://alrodri.engin.umich.edu/" target="_blank">Alexander Rodr&iacute;guez</a></div>
+
+                <div class="team-card-dept">Computer Science &amp; Engineering</div>
+                <div class="team-card-focus">AI for complex systems, agent frameworks, scenario modeling, uncertainty quantification</div>
+            </div>
+            <div class="team-card">
+                <div class="team-card-name"><a href="https://cee.engin.umich.edu/people/love-nancy-g/" target="_blank">Nancy Love</a></div>
+
+                <div class="team-card-dept">Civil &amp; Environmental Engineering</div>
+                <div class="team-card-focus">Water systems, infrastructure assessment, environmental impact</div>
+            </div>
+            <div class="team-card">
+                <div class="team-card-name"><a href="https://ies.engin.umich.edu/profile/ullman-amanda/" target="_blank">Amanda Ullman</a></div>
+
+                <div class="team-card-dept">Institute for Energy Solutions</div>
+                <div class="team-card-focus">Community engagement, energy transition impacts, stakeholder processes</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ─── IMPACT & TIMELINE ─── -->
+<section class="impact" id="impact">
+    <div class="section-inner reveal">
+        <span class="section-label">Impact</span>
+        <h2 class="section-title">From Michigan proof-of-concept to national model</h2>
+        <p class="section-prose">
+            Within five years, we will demonstrate that democracies can govern planetary-scale AI
+            infrastructure through legitimate deliberative processes, creating replicable models
+            for infrastructure decisions nationwide.
+        </p>
+    </div>
+    <div class="section-inner">
+        <div class="impact-timeline reveal">
+            <div class="timeline-item">
+                <div class="timeline-year">Year 1</div>
+                <div class="timeline-content">
+                    <h3>Measurement Foundation</h3>
+                    <p>
+                        Deploy verified energy and water measurement infrastructure. Establish
+                        ground truth database with independently verified AI consumption data.
+                        Launch community engagement with Ypsilanti and Saline stakeholders.
+                    </p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-year">Year 2</div>
+                <div class="timeline-content">
+                    <h3>Grid Testbed &amp; Flexibility</h3>
+                    <p>
+                        Demonstrate datacenter workload flexibility on physical grid testbed.
+                        Publish first benchmark results showing coordination potential.
+                        Begin scenario model development with utility partners.
+                    </p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-year">Year 3</div>
+                <div class="timeline-content">
+                    <h3>Integrated Stack</h3>
+                    <p>
+                        Connect all four CIVIC Stack layers into working prototype.
+                        Pilot AI-powered stakeholder interfaces with Michigan communities.
+                        Launch certificate program for practitioners.
+                    </p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-year">Years 4-5</div>
+                <div class="timeline-content">
+                    <h3>Scaling &amp; Adoption</h3>
+                    <p>
+                        Expand to multi-state regulatory contexts. Pursue federal funding
+                        alignment with DOE programs. Establish sustainable revenue through
+                        certificate programs and philanthropic partnerships.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ─── LTM VISION ALIGNMENT ─── -->
+<section class="alignment">
+    <div class="section-inner reveal">
+        <span class="section-label">LTM Vision Alignment</span>
+        <h2 class="section-title">Advancing Michigan's strategic priorities</h2>
+    </div>
+    <div class="section-inner">
+        <div class="alignment-grid reveal">
+            <div class="alignment-item">
+                <h3>Energy, Climate Action, Sustainability</h3>
+                <p>
+                    Building the measurement and modeling infrastructure for evidence-based
+                    energy and water governance in the age of AI.
+                </p>
+            </div>
+            <div class="alignment-item">
+                <h3>Advanced Technology</h3>
+                <p>
+                    Creating verified benchmarks and open tools that establish Michigan
+                    as the national leader in AI infrastructure assessment.
+                </p>
+            </div>
+            <div class="alignment-item">
+                <h3>Democracy, Civic &amp; Global Engagement</h3>
+                <p>
+                    Demonstrating that democratic processes can govern planetary-scale
+                    technology decisions through informed civic discourse.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ─── CONTACT ─── -->
+<section class="contact" id="contact">
+    <div class="contact-inner reveal">
+        <div>
+            <span class="section-label">Get Involved</span>
+            <h2 class="section-title">Join the conversation</h2>
+            <p class="section-prose" style="margin-top: 1rem;">
+                Whether you are a policymaker, community member, researcher, utility, or datacenter operator,
+                the CIVIC Forum is building tools and frameworks for you.
+            </p>
+        </div>
+        <div class="contact-info" style="margin-top: 1rem;">
+            <p>
+                <strong>The CIVIC Forum</strong><br>
+                University of Michigan<br>
+                <a href="mailto:hello@thecivic.forum">hello@thecivic.forum</a>
+            </p>
+        </div>
+    </div>
+</section>
+
+<!-- ─── FOOTER ─── -->
+<footer>
+    <div class="footer-inner">
+        <span>&copy; 2026 The CIVIC Forum &middot; University of Michigan</span>
+        <span>Center for Informed Voices in Infrastructure Choices</span>
+    </div>
+</footer>
+
+<script>
+    // Nav shadow on scroll
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => {
+        nav.classList.toggle('scrolled', window.scrollY > 20);
+    });
+
+    // Close mobile nav on link click
+    document.querySelectorAll('.nav-links a').forEach(link => {
+        link.addEventListener('click', () => {
+            document.getElementById('navLinks').classList.remove('open');
+        });
+    });
+
+    // Reveal on scroll
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+            }
+        });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
