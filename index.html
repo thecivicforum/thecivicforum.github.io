@@ -3,8 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CIVIC Forum — Center for Informed Voices in Infrastructure Choices</title>
+    <title>The CIVIC Forum: Center for Informed Voices in Infrastructure Choices</title>
     <meta name="description" content="Bridging AI infrastructure decisions with democratic governance through evidence-based civic discourse.">
+    <meta property="og:title" content="The CIVIC Forum: Center for Informed Voices in Infrastructure Choices">
+    <meta property="og:description" content="Bridging AI infrastructure decisions with democratic governance through evidence-based civic discourse.">
+    <meta property="og:image" content="https://thecivic.forum/og-image-dark.png">
+    <meta property="og:url" content="https://thecivic.forum">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://thecivic.forum/og-image-dark.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300..700;1,9..40,300..700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -435,6 +442,13 @@
             border: 1px solid var(--mist);
             color: var(--slate);
             background: var(--paper);
+            text-decoration: none;
+            transition: border-color 0.2s, color 0.2s;
+        }
+
+        a.capability-tag:hover {
+            border-color: var(--copper);
+            color: var(--copper);
         }
 
         /* ─── TEAM ─── */
@@ -488,6 +502,18 @@
             color: var(--slate);
             margin-top: 0.8rem;
             line-height: 1.6;
+        }
+
+        .team-card-name a {
+            color: var(--accent);
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+            transition: border-color 0.2s, color 0.2s;
+        }
+
+        .team-card-name a:hover {
+            border-bottom-color: var(--copper);
+            color: var(--copper);
         }
 
         /* ─── IMPACT ─── */
@@ -934,14 +960,14 @@
                 and community organizations provide the relationships needed to translate research into practice.
             </p>
             <div class="capability-tags">
-                <span class="capability-tag">ML.ENERGY benchmark</span>
-                <span class="capability-tag">Power grid testbeds</span>
+                <a href="https://ml.energy/" target="_blank" class="capability-tag">ML.ENERGY</a>
+                <a href="https://mpel.engin.umich.edu/" target="_blank" class="capability-tag">Power grid testbeds</a>
                 <span class="capability-tag">Macro-energy modeling</span>
                 <span class="capability-tag">Water systems assessment</span>
                 <span class="capability-tag">AI agent frameworks</span>
                 <span class="capability-tag">Energy law &amp; regulation</span>
-                <span class="capability-tag">Community engagement (IES)</span>
-                <span class="capability-tag">Ginsberg Center partnership</span>
+                <a href="https://ies.engin.umich.edu/" target="_blank" class="capability-tag">Institute for Energy Solutions (IES)</a>
+                <a href="https://ginsberg.umich.edu/" target="_blank" class="capability-tag">Ginsberg Center</a>
             </div>
         </div>
     </div>
@@ -951,54 +977,54 @@
 <section class="team" id="team">
     <div class="section-inner reveal">
         <span class="section-label">Team</span>
-        <h2 class="section-title">An interdisciplinary team across six departments</h2>
+        <h2 class="section-title">An interdisciplinary team across six units</h2>
     </div>
     <div class="section-inner">
         <div class="team-grid reveal">
             <div class="team-card">
-                <div class="team-card-name">Mosharaf Chowdhury</div>
+                <div class="team-card-name"><a href="https://mosharaf.com/" target="_blank">Mosharaf Chowdhury</a></div>
                 <div class="team-card-role">Lead PI</div>
                 <div class="team-card-dept">Computer Science &amp; Engineering</div>
                 <div class="team-card-focus">ML systems, ML.ENERGY benchmark, energy measurement infrastructure</div>
             </div>
             <div class="team-card">
-                <div class="team-card-name">Michael Craig</div>
+                <div class="team-card-name"><a href="https://seas.umich.edu/research/faculty/michael-craig" target="_blank">Michael Craig</a></div>
                 <div class="team-card-role">Co-PI</div>
                 <div class="team-card-dept">Environment &amp; Sustainability</div>
                 <div class="team-card-focus">Macro-energy systems, robust decision-making under uncertainty</div>
             </div>
             <div class="team-card">
-                <div class="team-card-name">Vladimir Dvorkin</div>
+                <div class="team-card-name"><a href="https://web.eecs.umich.edu/~dvorkin/" target="_blank">Vladimir Dvorkin</a></div>
                 <div class="team-card-role">Co-PI</div>
                 <div class="team-card-dept">Electrical &amp; Computer Engineering</div>
                 <div class="team-card-focus">Power systems, grid testbed, distribution infrastructure analysis</div>
             </div>
             <div class="team-card">
-                <div class="team-card-name">Alexandra Klass</div>
+                <div class="team-card-name"><a href="https://michigan.law.umich.edu/faculty-and-scholarship/our-faculty/alexandra-klass" target="_blank">Alexandra Klass</a></div>
                 <div class="team-card-role">Co-PI</div>
                 <div class="team-card-dept">Law School</div>
                 <div class="team-card-focus">Energy law, regulatory frameworks, policy translation</div>
             </div>
             <div class="team-card">
-                <div class="team-card-name">Nancy Love</div>
+                <div class="team-card-name"><a href="https://cee.engin.umich.edu/people/love-nancy-g/" target="_blank">Nancy Love</a></div>
                 <div class="team-card-role">Co-PI</div>
                 <div class="team-card-dept">Civil &amp; Environmental Engineering</div>
                 <div class="team-card-focus">Water systems, infrastructure assessment, environmental impact</div>
             </div>
             <div class="team-card">
-                <div class="team-card-name">Johanna Mathieu</div>
+                <div class="team-card-name"><a href="https://mathieu.engin.umich.edu/" target="_blank">Johanna Mathieu</a></div>
                 <div class="team-card-role">Co-PI</div>
                 <div class="team-card-dept">Electrical &amp; Computer Engineering</div>
                 <div class="team-card-focus">Grid coordination protocols, real-time control algorithms</div>
             </div>
             <div class="team-card">
-                <div class="team-card-name">Alexander Rodr&iacute;guez</div>
+                <div class="team-card-name"><a href="https://alrodri.engin.umich.edu/" target="_blank">Alexander Rodr&iacute;guez</a></div>
                 <div class="team-card-role">Co-PI</div>
                 <div class="team-card-dept">Computer Science &amp; Engineering</div>
                 <div class="team-card-focus">AI for complex systems, agent frameworks, scenario modeling</div>
             </div>
             <div class="team-card">
-                <div class="team-card-name">Amanda Ullman</div>
+                <div class="team-card-name"><a href="https://ies.engin.umich.edu/profile/ullman-amanda/" target="_blank">Amanda Ullman</a></div>
                 <div class="team-card-role">Community Engagement Lead</div>
                 <div class="team-card-dept">Institute for Energy Solutions</div>
                 <div class="team-card-focus">Community engagement, energy transition impacts, stakeholder processes</div>
