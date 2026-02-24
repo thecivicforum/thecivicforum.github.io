@@ -7,3 +7,5 @@ vendor
 .bundle
 CLAUDE.md
 Gemfile.lock
+generate_og.py
+og-image-light.png
