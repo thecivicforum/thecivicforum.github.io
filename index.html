@@ -705,6 +705,24 @@
             transform: translateY(0);
         }
 
+        /* ─── REDUCED MOTION ─── */
+        @media (prefers-reduced-motion: reduce) {
+            html { scroll-behavior: auto; }
+
+            /* These start at opacity:0 and are revealed by animation/JS,
+               so restore them explicitly rather than only killing motion. */
+            .hero-badge,
+            .hero h1,
+            .hero-sub,
+            .hero-stats,
+            .reveal {
+                opacity: 1;
+                transform: none;
+                animation: none;
+                transition: none;
+            }
+        }
+
         /* ─── RESPONSIVE ─── */
         @media (max-width: 900px) {
             .nav-links { display: none; }
@@ -750,6 +768,12 @@
             .timeline-year::after { display: none; }
         }
     </style>
+    <noscript>
+        <style>
+            /* Without JS the observer never runs, so reveal everything up front. */
+            .reveal { opacity: 1; transform: none; }
+        </style>
+    </noscript>
 </head>
 <body>
 
@@ -765,8 +789,8 @@
             <li><a href="#impact">Impact</a></li>
             <li><a href="#contact">Contact</a></li>
         </ul>
-        <button class="nav-hamburger" onclick="document.getElementById('navLinks').classList.toggle('open')" aria-label="Toggle menu">
-            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round">
+        <button class="nav-hamburger" id="navToggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="navLinks">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" aria-hidden="true" focusable="false">
                 <line x1="3" y1="6" x2="21" y2="6"/>
                 <line x1="3" y1="12" x2="21" y2="12"/>
                 <line x1="3" y1="18" x2="21" y2="18"/>
@@ -1187,10 +1211,20 @@
         nav.classList.toggle('scrolled', window.scrollY > 20);
     });
 
+    // Mobile nav toggle, kept in sync with aria-expanded
+    const navToggle = document.getElementById('navToggle');
+    const navLinks = document.getElementById('navLinks');
+
+    navToggle.addEventListener('click', () => {
+        const open = navLinks.classList.toggle('open');
+        navToggle.setAttribute('aria-expanded', String(open));
+    });
+
     // Close mobile nav on link click
-    document.querySelectorAll('.nav-links a').forEach(link => {
+    navLinks.querySelectorAll('a').forEach(link => {
         link.addEventListener('click', () => {
-            document.getElementById('navLinks').classList.remove('open');
+            navLinks.classList.remove('open');
+            navToggle.setAttribute('aria-expanded', 'false');
         });
     });
 
