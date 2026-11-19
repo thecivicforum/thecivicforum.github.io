@@ -1,0 +1,1086 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description"
+        content="Infrastructure for AI Workshop at the University of Michigan. December 8, 2026, at the Michigan League Ballroom in Ann Arbor.">
+  <title>Infrastructure for AI Workshop | University of Michigan</title>
+
+  <style>
+    :root {
+      --blue: #00274c;
+      --maize: #ffcb05;
+      --ink: #243746;
+      --muted: #485b69;
+      --line: #ccd5dc;
+      --light: #f3f6f8;
+      --warm: #fff8dc;
+      --white: #fff;
+      --radius: 16px;
+      --width: 1200px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    .nowrap {
+      white-space: nowrap;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 1rem;
+      line-height: 1.65;
+      color: var(--ink);
+      background: #f5f7fa;
+      overflow-wrap: break-word;
+    }
+
+    a {
+      color: var(--blue);
+      text-underline-offset: 4px;
+    }
+
+    a:hover {
+      text-decoration-thickness: 2px;
+    }
+
+    a:focus-visible {
+      outline: 3px solid var(--blue);
+      outline-offset: 5px;
+    }
+
+    .container {
+      width: min(var(--width), calc(100% - 40px));
+      margin-inline: auto;
+    }
+
+    .skip-link {
+      position: absolute;
+      top: -100px;
+      left: 20px;
+      z-index: 10;
+      padding: 12px 20px;
+      background: var(--maize);
+      color: var(--blue);
+      font-weight: bold;
+    }
+
+    .skip-link:focus {
+      top: 12px;
+    }
+
+    .masthead {
+      background: var(--blue);
+      color: var(--white);
+      border-bottom: 5px solid var(--maize);
+    }
+
+    .masthead-inner {
+      padding-block: 16px;
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .university {
+      margin: 0;
+      font-size: 1.2rem;
+      font-weight: 700;
+      letter-spacing: .02em;
+    }
+
+    .host-label {
+      margin: 0;
+      font-size: .95rem;
+      color: var(--white);
+    }
+
+    nav {
+      border-bottom: 1px solid var(--line);
+      background: var(--white);
+    }
+
+    nav ul {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 4px 24px;
+      list-style: none;
+      margin: 0;
+      padding: 6px 0;
+    }
+
+    nav a {
+      display: inline-block;
+      padding: 8px 0;
+      font-weight: 700;
+      text-decoration: none;
+    }
+
+    nav a:hover {
+      text-decoration: underline;
+    }
+
+    h1,
+    h2,
+    h3 {
+      color: var(--blue);
+      line-height: 1.18;
+    }
+
+    h1 {
+      font-size: clamp(2.15rem, 4.5vw, 3.5rem);
+      letter-spacing: -.035em;
+      margin: 10px 0 16px;
+      max-width: 900px;
+    }
+
+    h2 {
+      font-size: clamp(1.7rem, 3vw, 2.2rem);
+      letter-spacing: -.02em;
+      margin: 0 0 16px;
+    }
+
+    h3 {
+      font-size: 1.25rem;
+      margin: 0 0 14px;
+    }
+
+    p {
+      margin: 0 0 18px;
+    }
+
+    p:last-child {
+      margin-bottom: 0;
+    }
+
+    .eyebrow {
+      font-size: .83rem;
+      font-weight: 700;
+      letter-spacing: .13em;
+      text-transform: uppercase;
+      color: var(--blue);
+    }
+
+    .hero-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 320px;
+      gap: 22px;
+      align-items: stretch;
+      margin: 30px 0 10px;
+    }
+
+    .hero {
+      min-width: 0;
+    }
+
+    .hero-panel {
+      height: 100%;
+      overflow: hidden;
+      padding: 30px;
+      border: 1px solid var(--line);
+      border-top: 6px solid var(--maize);
+      border-radius: var(--radius);
+      background:
+        radial-gradient(circle at 95% 5%, #d5e4ef 0, transparent 48%),
+        radial-gradient(circle at 5% 100%, #fff1b8 0, transparent 46%),
+        var(--white);
+      box-shadow: 0 12px 32px rgba(0, 39, 76, .08);
+    }
+
+    .subtitle {
+      font-size: clamp(1.15rem, 2vw, 1.45rem);
+      line-height: 1.4;
+      font-weight: 700;
+      color: var(--blue);
+      margin-bottom: 16px;
+      max-width: 800px;
+    }
+
+    .intro {
+      max-width: 660px;
+      font-size: 1rem;
+      line-height: 1.6;
+      color: var(--muted);
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 20px;
+    }
+
+    .button {
+      display: inline-block;
+      padding: 10px 18px;
+      border: 2px solid var(--blue);
+      border-radius: 100px;
+      color: var(--blue);
+      font-weight: 700;
+      text-decoration: none;
+      background: var(--white);
+    }
+
+    .button.primary {
+      border-color: var(--maize);
+      background: var(--maize);
+    }
+
+    .button:hover {
+      background: var(--blue);
+      border-color: var(--blue);
+      color: var(--white);
+    }
+
+    section {
+      padding-block: 24px;
+      scroll-margin-top: 24px;
+    }
+
+    .event-sidebar {
+      padding: 0;
+    }
+
+    .details-panel {
+      height: 100%;
+      padding: 26px;
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-top: 6px solid var(--blue);
+      border-radius: var(--radius);
+      box-shadow: 0 12px 32px rgba(0, 39, 76, .06);
+    }
+
+    .details-panel h2 {
+      font-size: 1.2rem;
+      text-transform: uppercase;
+      letter-spacing: .07em;
+      margin-bottom: 22px;
+    }
+
+    .event-details {
+      margin: 0;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+
+    .event-details dt {
+      color: var(--blue);
+      font-size: .82rem;
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      margin-bottom: 5px;
+    }
+
+    .event-details dd {
+      margin: 0;
+      font-size: .95rem;
+      line-height: 1.55;
+    }
+
+    .date {
+      font-size: 1rem;
+      font-weight: 700;
+    }
+
+    .stack-graphic {
+      margin: 24px 0 0;
+      padding-top: 18px;
+      border-top: 1px solid #bdccd7;
+    }
+
+    .stack-graphic svg {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+    .stack-graphic figcaption {
+      margin-top: 8px;
+      color: var(--blue);
+      font-size: .85rem;
+      font-weight: 700;
+    }
+
+    .section-intro {
+      max-width: 820px;
+      color: var(--muted);
+      font-size: 1.05rem;
+    }
+
+    .two-column {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 20px;
+    }
+
+    .card {
+      padding: 23px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--white);
+      box-shadow: 0 5px 18px rgba(0, 39, 76, .04);
+    }
+
+    .card.accent {
+      border-top: 5px solid var(--maize);
+    }
+
+    .callout {
+      border-left: 5px solid var(--maize);
+      padding: 20px 24px;
+      background: var(--warm);
+      margin-top: 18px;
+    }
+
+    .callout h3 {
+      margin-bottom: 12px;
+    }
+
+    /* Agenda */
+    .agenda {
+      list-style: none;
+      padding: 0;
+      margin: 22px 0 0;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      overflow: hidden;
+      background: var(--white);
+      box-shadow: 0 8px 24px rgba(0, 39, 76, .05);
+    }
+
+    .agenda-item {
+      display: grid;
+      grid-template-columns: 125px minmax(0, 1fr);
+      gap: 22px;
+      padding: 22px 26px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .agenda-item:last-child {
+      border-bottom: 0;
+    }
+
+    .agenda-time {
+      color: var(--blue);
+      font-weight: 700;
+      font-size: 1rem;
+      white-space: nowrap;
+      padding-top: 2px;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .agenda-content h3 {
+      font-size: 1.15rem;
+      margin-bottom: 6px;
+      line-height: 1.35;
+    }
+
+    .agenda-content p {
+      margin-bottom: 0;
+      color: var(--muted);
+    }
+
+    .agenda-item.panel {
+      background: linear-gradient(110deg, #fff8dc, #fff 72%);
+      border-left: 5px solid var(--maize);
+      padding-left: 21px;
+    }
+
+    .agenda-item.break {
+      background: var(--light);
+    }
+
+    .session-label {
+      display: inline-block;
+      margin-bottom: 8px;
+      padding: 3px 10px;
+      border-radius: 100px;
+      background: var(--blue);
+      color: var(--white);
+      font-size: .75rem;
+      font-weight: 700;
+      letter-spacing: .04em;
+    }
+
+    .organizations {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      list-style: none;
+      padding: 0;
+      margin: 16px 0 22px;
+    }
+
+    .organizations li {
+      padding: 8px 16px;
+      border: 1px solid var(--blue);
+      border-radius: 7px;
+      background: var(--blue);
+      color: var(--white);
+      font-weight: 700;
+    }
+
+    .invitation-list {
+      padding-left: 22px;
+      margin-bottom: 0;
+    }
+
+    .invitation-list li {
+      margin-bottom: 8px;
+    }
+
+    .contact-panel {
+      background: var(--blue);
+      color: var(--white);
+      padding: 30px;
+      border-radius: var(--radius);
+      border-top: 6px solid var(--maize);
+      box-shadow: 0 10px 28px rgba(0, 39, 76, .12);
+    }
+
+    .contact-panel h2,
+    .contact-panel h3 {
+      color: var(--white);
+    }
+
+    .contact-panel a {
+      color: var(--maize);
+    }
+
+    .contact-panel a:focus-visible {
+      outline-color: var(--maize);
+    }
+
+    .contact-person {
+      margin: 0;
+    }
+
+    .back-top {
+      display: inline-block;
+      margin-top: 22px;
+      font-weight: 700;
+    }
+
+    footer {
+      margin-top: 12px;
+      border-top: 1px solid var(--line);
+      padding-block: 22px;
+      background: var(--white);
+      font-size: .95rem;
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+
+    .footer-inner p {
+      margin-bottom: 6px;
+    }
+
+    @media (max-width: 900px) {
+      .hero-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .event-details {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 18px;
+      }
+    }
+
+    @media (max-width: 760px) {
+      .hero-layout {
+        margin-top: 22px;
+      }
+
+      .hero-panel,
+      .details-panel,
+      .card {
+        padding: 23px;
+      }
+
+      .event-details,
+      .two-column {
+        grid-template-columns: 1fr;
+      }
+
+      section {
+        padding-block: 20px;
+      }
+
+      .event-sidebar {
+        padding: 0;
+      }
+
+      nav ul {
+        gap: 4px 18px;
+      }
+
+      .contact-panel {
+        padding: 24px;
+      }
+
+      .agenda-item {
+        grid-template-columns: 1fr;
+        gap: 8px;
+        padding: 20px;
+      }
+
+      .agenda-item.panel {
+        padding-left: 15px;
+      }
+
+      .agenda-time {
+        padding-top: 0;
+        font-size: .95rem;
+      }
+    }
+
+    @media print {
+      body {
+        background: var(--white);
+        font-size: 10pt;
+      }
+
+      .container {
+        width: 100%;
+      }
+
+      .skip-link,
+      nav,
+      .actions,
+      .back-top,
+      .stack-graphic {
+        display: none;
+      }
+
+      .masthead,
+      .contact-panel {
+        background: var(--white);
+        color: black;
+      }
+
+      .host-label,
+      .contact-panel h2,
+      .contact-panel h3,
+      .contact-panel a {
+        color: black;
+      }
+
+      .hero-layout {
+        grid-template-columns: 1fr;
+        margin-top: 12px;
+      }
+
+      .hero-panel {
+        background: var(--white);
+      }
+
+      .hero-panel,
+      .details-panel,
+      .card,
+      .contact-panel {
+        padding: 16px;
+        box-shadow: none;
+      }
+
+      .event-details {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+
+      section {
+        padding-block: 12px;
+      }
+
+      .card,
+      .agenda-item {
+        break-inside: avoid;
+      }
+
+      .agenda {
+        box-shadow: none;
+      }
+
+      .agenda-item {
+        grid-template-columns: 90px minmax(0, 1fr);
+        gap: 16px;
+        padding: 12px 16px;
+      }
+
+      .agenda-item.panel {
+        padding-left: 11px;
+      }
+
+      .session-label {
+        background: none;
+        color: black;
+        padding: 0;
+      }
+
+      h1 {
+        font-size: 28pt;
+      }
+
+      h2 {
+        font-size: 18pt;
+      }
+
+      footer {
+        margin-top: 12px;
+      }
+    }
+  </style>
+</head>
+
+<body id="top">
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <header class="masthead">
+    <div class="container masthead-inner">
+      <!-- Plain-text identity, not an official logo.
+           Add an approved <span class="nowrap">U-M</span> logo asset if required by your hosting unit. -->
+      <p class="university">University of Michigan</p>
+      <p class="host-label">
+        Hosted by MIDAS and IES in collaboration with CIVIC
+      </p>
+    </div>
+  </header>
+
+  <nav aria-label="Workshop navigation">
+    <div class="container">
+      <ul>
+        <li><a href="#about">About</a></li>
+        <li><a href="#program">Schedule</a></li>
+        <li><a href="#participants">Participants</a></li>
+        <li><a href="#outcomes">Outcomes</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <main id="main" class="container" tabindex="-1">
+
+    <div class="hero-layout">
+
+      <div class="hero">
+        <div class="hero-panel">
+          <p class="eyebrow">Chip to Grid</p>
+
+          <h1>Infrastructure for AI Workshop</h1>
+
+          <p class="subtitle">
+            Convening the People Who Build AI Infrastructure
+          </p>
+
+          <p class="intro">
+            Bringing University of Michigan faculty together with the
+            organizations building and overseeing AI infrastructure to hear directly where the hard problems are.
+          </p>
+
+          <div class="actions">
+            <a class="button primary" href="#program">View the schedule</a>
+          </div>
+
+          <figure class="stack-graphic">
+            <!-- Decorative infrastructure illustration, not a university logo. -->
+            <svg viewBox="0 0 640 128"
+                 xmlns="http://www.w3.org/2000/svg"
+                 aria-hidden="true"
+                 focusable="false">
+
+              <path d="M95 57 H545"
+                    fill="none"
+                    stroke="#00274C"
+                    stroke-width="3"/>
+
+              <path d="M95 57 H170 L190 77 H300 L320 57 H430 L450 37 H545"
+                    fill="none"
+                    stroke="#FFCB05"
+                    stroke-width="5"/>
+
+              <g fill="#00274C">
+                <rect x="35" y="12" width="110" height="90" rx="16"/>
+                <rect x="265" y="12" width="110" height="90" rx="16"/>
+                <rect x="495" y="12" width="110" height="90" rx="16"/>
+              </g>
+
+              <!-- Accelerator chip -->
+              <g fill="none"
+                 stroke="#FFCB05"
+                 stroke-width="3"
+                 stroke-linecap="round">
+                <rect x="69" y="34" width="42" height="42" rx="4"/>
+                <rect x="79" y="44" width="22" height="22" rx="2"/>
+                <path d="M77 26 V34 M90 26 V34 M103 26 V34
+                         M77 76 V84 M90 76 V84 M103 76 V84
+                         M61 42 H69 M61 55 H69 M61 68 H69
+                         M111 42 H119 M111 55 H119 M111 68 H119"/>
+              </g>
+
+              <!-- Datacenter server racks -->
+              <g fill="none"
+                 stroke="#FFCB05"
+                 stroke-width="3"
+                 stroke-linecap="round">
+                <rect x="291" y="29" width="58" height="55" rx="4"/>
+                <path d="M291 47 H349 M291 65 H349
+                         M314 38 H338 M314 56 H338 M314 74 H338"/>
+              </g>
+
+              <g fill="#FFCB05">
+                <circle cx="302" cy="38" r="3"/>
+                <circle cx="302" cy="56" r="3"/>
+                <circle cx="302" cy="74" r="3"/>
+              </g>
+
+              <!-- Electric grid -->
+              <g fill="none"
+                 stroke="#FFCB05"
+                 stroke-width="3"
+                 stroke-linecap="round"
+                 stroke-linejoin="round">
+                <path d="M550 25 L530 86 M550 25 L570 86
+                         M539 57 H561 M534 73 H566
+                         M532 42 H568 M539 32 H561
+                         M539 57 L566 73 M561 57 L534 73
+                         M534 73 L570 86 M566 73 L530 86
+                         M521 44 H532 M568 44 H579"/>
+              </g>
+
+              <g fill="#00274C"
+                 font-family="Arial, Helvetica, sans-serif"
+                 font-size="13"
+                 font-weight="700"
+                 text-anchor="middle">
+                <text x="90" y="122">COMPUTE</text>
+                <text x="320" y="122">DATACENTERS</text>
+                <text x="550" y="122">ENERGY</text>
+              </g>
+            </svg>
+
+            <figcaption>
+              From accelerators and serving systems to cooling, siting,
+              and the grid.
+            </figcaption>
+          </figure>
+        </div>
+      </div>
+
+      <section class="event-sidebar" aria-labelledby="event-heading">
+        <div class="details-panel">
+          <h2 id="event-heading">Event details</h2>
+
+          <dl class="event-details">
+            <div>
+              <dt>When</dt>
+              <dd>
+                <span class="date">
+                  <time datetime="2026-12-08">
+                    Tuesday, December 8, 2026
+                  </time>
+                </span><br>
+                Breakfast and check-in: 8:30 a.m.<br>
+                Closing thoughts: 3:30 p.m.<br>
+                Ends: 4:00 p.m.<br>
+                Eastern Time
+              </dd>
+            </div>
+
+            <div>
+              <dt>Where</dt>
+              <dd>
+                <strong>Michigan League Ballroom</strong><br>
+                911 N University Ave<br>
+                Ann Arbor, Michigan
+              </dd>
+            </div>
+
+            <div>
+              <dt>Format</dt>
+              <dd>
+                Industry discussion, three infrastructure panels,
+                a student and faculty poster session, networking, and a
+                large-group discussion
+              </dd>
+            </div>
+          </dl>
+        </div>
+      </section>
+
+    </div>
+
+    <section id="about" aria-labelledby="about-heading">
+      <p class="eyebrow">Why this workshop</p>
+
+      <h2 id="about-heading">
+        Every layer now constrains the others
+      </h2>
+
+      <p>
+        Building and running AI systems has become an infrastructure problem
+        that no single discipline owns. How fast models train, how cheaply
+        they can be served, and where they can be deployed, if at all,
+        depend on constraints that run from transistors and accelerator
+        architectures through interconnects, memory, and serving stacks,
+        and outward into datacenter thermal design, siting, interconnection
+        queues, and regional grid capacity.
+      </p>
+
+      <p>
+        Decisions at each layer increasingly affect the others, yet the
+        people working on them rarely sit in the same room. Universities
+        also have limited visibility into which problems matter most in
+        practice. This workshop brings <span class="nowrap">U-M</span> faculty together with the
+        organizations building and overseeing this infrastructure to hear
+        directly where the hard problems are.
+      </p>
+
+      <div class="callout">
+        <h3>Michigan expertise across the whole span</h3>
+        <p>
+          Michigan has unusual depth across computer architecture and
+          hardware design, systems and networking, machine learning and
+          data management, security and privacy, power systems and control,
+          and the mechanical and civil engineering expertise behind
+          thermal management, siting, and the built environment.
+        </p>
+      </div>
+    </section>
+
+    <section id="program" aria-labelledby="program-heading">
+      <p class="eyebrow">Workshop schedule</p>
+
+      <h2 id="program-heading">From chip to grid</h2>
+
+      <p class="section-intro">
+        Tuesday, December 8, 2026. All times are Eastern Time.
+      </p>
+
+      <ol class="agenda">
+
+        <li class="agenda-item break">
+          <div class="agenda-time">
+            <time datetime="2026-12-08T08:30:00-05:00">8:30 a.m.</time>
+          </div>
+          <div class="agenda-content">
+            <h3>Breakfast and event check-in</h3>
+          </div>
+        </li>
+
+        <li class="agenda-item">
+          <div class="agenda-time">
+            <time datetime="2026-12-08T09:00:00-05:00">9:00 a.m.</time>
+          </div>
+          <div class="agenda-content">
+            <h3>Welcome and introduction to AI work at <span class="nowrap">U-M</span></h3>
+          </div>
+        </li>
+
+        <li class="agenda-item">
+          <div class="agenda-time">
+            <time datetime="2026-12-08T09:30:00-05:00">9:30 a.m.</time>
+          </div>
+          <div class="agenda-content">
+            <h3>Interactive discussion: industry priorities and challenges</h3>
+          </div>
+        </li>
+
+        <li class="agenda-item break">
+          <div class="agenda-time">
+            <time datetime="2026-12-08T10:00:00-05:00">10:00 a.m.</time>
+          </div>
+          <div class="agenda-content">
+            <h3>Networking break</h3>
+          </div>
+        </li>
+
+        <li class="agenda-item panel">
+          <div class="agenda-time">
+            <time datetime="2026-12-08T10:15:00-05:00">10:15 a.m.</time>
+          </div>
+          <div class="agenda-content">
+            <span class="session-label">Chip to rack</span>
+            <h3>Panel 1: More AI per Watt</h3>
+            <p>Where does the next big gain in AI efficiency come from?</p>
+          </div>
+        </li>
+
+        <li class="agenda-item panel">
+          <div class="agenda-time">
+            <time datetime="2026-12-08T11:15:00-05:00">11:15 a.m.</time>
+          </div>
+          <div class="agenda-content">
+            <span class="session-label">Rack to datacenter</span>
+            <h3>Panel 2: Building AI Capacity</h3>
+            <p>What stops AI capacity from being built and run safely?</p>
+          </div>
+        </li>
+
+        <li class="agenda-item break">
+          <div class="agenda-time">
+            <time datetime="2026-12-08T12:15:00-05:00">12:15 p.m.</time>
+          </div>
+          <div class="agenda-content">
+            <h3>Lunch and student and faculty poster session</h3>
+          </div>
+        </li>
+
+        <li class="agenda-item panel">
+          <div class="agenda-time">
+            <time datetime="2026-12-08T13:30:00-05:00">1:30 p.m.</time>
+          </div>
+          <div class="agenda-content">
+            <span class="session-label">Datacenter to grid</span>
+            <h3>Panel 3: Powering AI</h3>
+            <p>Can the grid keep up, and who pays for it?</p>
+          </div>
+        </li>
+
+        <li class="agenda-item">
+          <div class="agenda-time">
+            <time datetime="2026-12-08T14:30:00-05:00">2:30 p.m.</time>
+          </div>
+          <div class="agenda-content">
+            <h3>Large-group discussion: solutions and steps forward</h3>
+          </div>
+        </li>
+
+        <li class="agenda-item">
+          <div class="agenda-time">
+            <time datetime="2026-12-08T15:30:00-05:00">3:30 p.m.</time>
+          </div>
+          <div class="agenda-content">
+            <h3>Wrap-up and closing thoughts</h3>
+          </div>
+        </li>
+
+      </ol>
+    </section>
+
+    <section id="participants" aria-labelledby="participants-heading">
+      <p class="eyebrow">Who will be there</p>
+
+      <h2 id="participants-heading">
+        Connecting the people building the stack
+      </h2>
+
+      <p>
+        <strong>Confirmed so far:</strong>
+      </p>
+
+      <ul class="organizations"
+          aria-label="Confirmed participating organizations">
+        <li>Microsoft</li>
+        <li>Amazon</li>
+        <li>Google</li>
+        <li>NVIDIA</li>
+        <li>AMD</li>
+        <li>Nebius</li>
+        <li>Presidio</li>
+        <li>Voxel51</li>
+        <li>Palo Alto Networks</li>
+        <li>DTE Energy</li>
+        <li>Consumers Energy</li>
+        <li>Siemens Energy</li>
+        <li>Verrus</li>
+        <li>Breakthrough Energy Ventures</li>
+      </ul>
+
+      <div class="two-column">
+
+        <div class="card">
+          <h3>We are also inviting</h3>
+          <p>
+            Frontier AI labs, additional hardware, cloud, and energy
+            companies, and <span class="nowrap">U-M</span> faculty and students from Computer Science
+            and Engineering (CSE), Electrical and Computer Engineering
+            (ECE), and other departments across the university.
+          </p>
+        </div>
+
+        <div class="card accent">
+          <h3>For industry participants</h3>
+          <p>
+            This is a chance to shape a new research program at Michigan
+            from the start. Bring the problems you are actually stuck on:
+            participants will help decide which challenges <span class="nowrap">U-M</span> takes on
+            and how, working with faculty across every layer of the AI
+            stack, from accelerators and serving systems to cooling,
+            siting, and the grid.
+          </p>
+          <p>You will also meet the students doing this work.</p>
+        </div>
+
+      </div>
+    </section>
+
+    <section id="outcomes" aria-labelledby="outcomes-heading">
+      <p class="eyebrow">What comes out of it</p>
+
+      <h2 id="outcomes-heading">
+        A shared agenda and a research program built together
+      </h2>
+
+      <div class="two-column">
+
+        <article class="card accent">
+          <h3>Michigan Report on AI Infrastructure for 2030</h3>
+          <p>
+            A short report on the grand challenges across the stack,
+            from performance and cost to keeping new infrastructure
+            safe and affordable for host communities.
+          </p>
+          <p><strong>Participants help shape it.</strong></p>
+        </article>
+
+        <article class="card accent">
+          <h3>A research program built with industry</h3>
+          <p>
+            Building on the report, we will turn the challenges participants
+            care most about into joint projects with the <span class="nowrap">U-M</span> faculty best
+            positioned to address them.
+          </p>
+          <p>Companies can sponsor them or join as collaborators.</p>
+        </article>
+
+      </div>
+
+      <a class="back-top" href="#top">Back to top</a>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="container footer-inner">
+      <div>
+        <p>
+          <strong>
+            Hosted by <a href="https://midas.umich.edu/">MIDAS</a> and
+            <a href="https://ies.engin.umich.edu/">IES</a> in collaboration with
+            <a href="https://thecivic.forum/">CIVIC</a>
+          </strong>
+        </p>
+        <p>
+          With additional support from the College of Engineering,
+          Computer Science and Engineering, and Electrical and
+          Computer Engineering.
+        </p>
+      </div>
+
+      <p><strong>University of Michigan</strong></p>
+    </div>
+  </footer>
+
+</body>
+</html>
